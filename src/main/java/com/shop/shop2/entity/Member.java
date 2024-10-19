@@ -2,12 +2,12 @@ package com.shop.shop2.entity;
 
 import com.shop.shop2.constant.Role;
 import com.shop.shop2.dto.MemberFormDto;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import javax.persistence.*;
 
 @Entity
 @Table(name = "member")

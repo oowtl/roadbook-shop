@@ -17,18 +17,18 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         return http
-//                .authorizeHttpRequests(authorizeHttpRequestsCustomizer -> authorizeHttpRequestsCustomizer
-//                        .requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
-//                        .requestMatchers("/", "/members/**", "/item/**", "/images/**").permitAll()
-//                        .requestMatchers("/admin/**").hasRole("ADMIN")
-//                        .anyRequest()
-//                        .authenticated())
+                .authorizeHttpRequests(authorizeHttpRequestsCustomizer -> authorizeHttpRequestsCustomizer
+                        .requestMatchers("/css/**", "/js/**", "/img/**").permitAll() // 정적 리소스는 누구나 접근 가능
+                        .requestMatchers("/", "/members/**", "/item/**", "/images/**").permitAll() // 누구나 접근 가능
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .anyRequest()
+                        .authenticated())
                 .formLogin(formLoginCustomizer -> formLoginCustomizer
                                 .loginPage("/members/login") // 로그인 페이지 url 설정
                                 .defaultSuccessUrl("/") // 로그인 성공 시 이동 url
                                 .usernameParameter("email") // 로그인 성공 시 사용할 파라미터 타입 설정
                                 .failureUrl("/members/login/error") // 로그인 실패 시 이동 url
-//                        .failureHandler(new CustomAuthenticationFailureHandler())
+                        .failureHandler(new CustomAuthenticationFailureHandler())
                 ).logout(logoutCustomizer -> logoutCustomizer
                         .logoutRequestMatcher(new AntPathRequestMatcher("/members/logout")) // 로그아웃 url 설정
                         .logoutSuccessUrl("/") // 로그아웃 성공 시 url 설정
